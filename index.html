@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Dispensador Web</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+</head>
+<body>
+	<header>
+		<h1>Dispensador</h1>
+	</header>
+
+	<div id="espe">
+		<figure><img src="img/espe.png" alt=""></figure>
+	</div>
+
+	<form id="horarios">
+		<input type="time" placeholder="00:00" id="horario1" required="true">
+		<input type="time" placeholder="00:00" id="horario2" required="true">
+		<input type="time" placeholder="00:00" id="horario3" required="true">
+		<input type="submit" value="Guardar Horarios">
+	</form>
+
+	<div id="mensaje">
+		<p>Se ha guardado los horarios.</p>
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+        
+    <script src="js/main.js"></script>
+</body>
+</html>

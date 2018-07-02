@@ -1,0 +1,78 @@
+// colores
+dark_primary = #1976D2
+light_primary = #BBDEFB
+primary = #2196F3
+text-icon = #FFFFFF
+accent = #FFC107
+primary_text = #212121
+secondary_text = #757575
+divider = #BDBDBD
+
+*
+	margin 0
+	padding 0
+	font-family 'Arial'
+
+a
+	text-decoration none
+	
+#espe
+	position fixed
+	bottom 0
+	left 0
+	padding 1em 2em
+	
+	figure
+		width 200px
+		
+		img 
+			width 100% 
+
+#mensaje
+	text-align center
+	display none
+	
+	p 
+		font-size 14px
+		color secondary_text
+		
+
+body 
+	
+	header
+		background primary
+		padding 1em 3em
+		
+		h1
+			font-size 20px
+			color white
+	
+	#horarios
+		margin 3em auto
+		width 150px
+		border 1px solid rgba(0,0,0,0.3)
+		border-radius 0.3em
+		padding 1em 2em
+		
+		input
+			border 1px solid rgba(0,0,0,0.1)
+			border-radius 0.3em
+			background white
+			font-weight 300
+			font-size 20px
+			display block
+			width 82%
+			margin 0.5em 0
+			padding 0.5em 0.7em
+		
+		input[type='submit']
+			width 100%
+			font-size 15px
+			background dark_primary
+			color white
+			transition all 0.3s linear
+			cursor pointer
+		
+		input[type='submit']:hover
+			background light_primary
+			color #121
