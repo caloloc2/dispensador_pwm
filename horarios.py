@@ -8,7 +8,6 @@ pwm1 = GPIO.PWM(24, 100)
 pwm1.start(0)
 
 pause_time = 0.02
-global bandera
 bandera = 0
 
 def lectura():
@@ -50,6 +49,7 @@ def pwm():
 			time.sleep(pause_time)
 
 try:
+	bandera = 0
 	while(1):
 		lectura()
 		time.sleep(0.5)
