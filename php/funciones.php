@@ -10,7 +10,7 @@ function Escribe($dato){
 }
 
 function Lee(){
-	$fp = fopen("../horarios.rasp", "r+");
+	$fp = fopen("../horarios.rasp", "r");
 	$dato = fgets($fp);
 	fclose($fp);
 
