@@ -2,16 +2,13 @@
 import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(24, GPIO.OUT) ## GPIO 2 como salida
-GPIO.setup(25, GPIO.OUT) ## GPIO 2 como salida
+GPIO.setup(24, GPIO.OUT)
 
-pwm1 = GPIO.PWM(24, 100)   # Creamos el objeto 'pwm1' en el pin 25 a 100 Hz  
-pwm2 = GPIO.PWM(25, 100)     # Creamos el objeto 'pwm2' en el pin 24 a 100 Hz 
-  
-pwm1.start(0)              # Iniciamos el objeto 'pwm1' al 0% del ciclo de trabajo (completamente apagado)  
-pwm2.start(0)              # Iniciamos el objeto 'pwm2' al 0% del ciclo de trabajo (completamente apagado)
+pwm1 = GPIO.PWM(24, 100)
+pwm1.start(0)
 
-pause_time = 0.02           # Declaramos un lapso de tiempo para las pausas
+pause_time = 0.02
+activado = false
 
 def lectura():
 	dato = ''
@@ -27,22 +24,29 @@ def lectura():
 
 	if (actual==a):
 		print "horario 1"
+		pwm()
 	elif (actual==b):
 		print "horario 2"
+		pwm()
 	elif (actual==c):
 		print "horario 3"
+		pwm()
 	else:
 		print "ninguno"
+		activado = false
 
 def pwm():
-	for i in range(0,101):            # De i=0 hasta i=101 (101 porque el script se detiene al 100%)
-            pwm1.ChangeDutyCycle(i)      # LED #1 = i
-            pwm2.ChangeDutyCycle(100 - i)  # LED #2 resta 100 - i
-            sleep(pause_time)             # Pequeña pausa para no saturar el procesador
-        for i in range(100,-1,-1):        # Desde i=100 a i=0 en pasos de -1  
-            pwm1.ChangeDutyCycle(i)      # LED #1 = i
-            pwm2.ChangeDutyCycle(100 - i)  # LED #2 resta 100 - i  
-            sleep(pause_time)             # Pequeña pausa para no saturar el procesador  
+	if (activado==false):
+		activado = true
+		for i in range(0,101):
+	        pwm1.ChangeDutyCycle(i)        
+	        time.sleep(pause_time)
+
+	    time.sleep(0.2)
+
+	    for i in range(100,-1,-1):
+	        pwm1.ChangeDutyCycle(i)
+	        time.sleep(pause_time)
 
 try:
 	while(1):
@@ -50,7 +54,6 @@ try:
 		time.sleep(0.1)
 
 except KeyboardInterrupt:
-	pwm1.stop()
-    pwm2.stop()  
+	pwm1.stop()    
 	GPIO.cleanup() ## Hago una limpieza de los GPIO
 	print "Script detenido."
