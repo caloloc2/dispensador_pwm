@@ -5,7 +5,7 @@ $respuesta['estado'] = false;
 try{
 	require 'funciones.php';
 
-	$respuesta['dato'] = split("/", Lee());
+	$respuesta['dato'] = explode("/", Lee());
 	$respuesta['estado'] = true;
 
 }catch(Exception $e){
