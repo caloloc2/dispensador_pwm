@@ -8,6 +8,7 @@ pwm1 = GPIO.PWM(24, 100)
 pwm1.start(0)
 
 pause_time = 0.02
+bandera = 0
 
 def lectura():
 	dato = ''
@@ -31,23 +32,26 @@ def lectura():
 		print "horario 3"
 		pwm()
 	else:
-		print "ninguno"		
+		print "ninguno"
+		bandera=0
 
-def pwm():	
-	for i in range(0,101):
-		pwm1.ChangeDutyCycle(i)
-		time.sleep(pause_time)
+def pwm():
+	if (bandera==0):
+		bandera=1
+		for i in range(0,101):
+			pwm1.ChangeDutyCycle(i)
+			time.sleep(pause_time)
 
-	time.sleep(0.2)
+		time.sleep(0.2)
 
-	for i in range(100,-1,-1):
-		pwm1.ChangeDutyCycle(i)
-		time.sleep(pause_time)
+		for i in range(100,-1,-1):
+			pwm1.ChangeDutyCycle(i)
+			time.sleep(pause_time)
 
 try:
 	while(1):
 		lectura()
-		time.sleep(0.1)
+		time.sleep(0.5)
 
 except KeyboardInterrupt:
 	pwm1.stop()
