@@ -7,7 +7,7 @@ function Obtener_Horarios(){
 		url: 'php/obtener_horarios.php',		
 		dataType: 'json',
 		success: function(datos) {
-			//console.log(datos);
+			console.log(datos);
 			if (datos['estado']){
 				document.getElementById('horario1').value = datos['dato'][0];
 				document.getElementById('horario2').value = datos['dato'][1];
