@@ -8,15 +8,15 @@ pwm1 = GPIO.PWM(24, 100)
 pwm1.start(0)
 
 pause_time = 0.02
-activado = false
+activado = False
 
 def lectura():
 	dato = ''
 	hora = ''
-	
-	horario = open("horarios.rasp", "r") 
-	for linea in horario.readlines():		
-		hora+= linea	
+
+	horario = open("horarios.rasp", "r")
+	for linea in horario.readlines():
+		hora+= linea
 
 	a,b,c = hora.split('/')
 
@@ -33,20 +33,20 @@ def lectura():
 		pwm()
 	else:
 		print "ninguno"
-		activado = false
+		activado = False
 
 def pwm():
-	if (activado==false):
-		activado = true
+	if (activado==False):
+		activado = True
 		for i in range(0,101):
-	        pwm1.ChangeDutyCycle(i)        
-	        time.sleep(pause_time)
+			pwm1.ChangeDutyCycle(i)        
+			time.sleep(pause_time)
 
-	    time.sleep(0.2)
+		time.sleep(0.2)
 
-	    for i in range(100,-1,-1):
-	        pwm1.ChangeDutyCycle(i)
-	        time.sleep(pause_time)
+		for i in range(100,-1,-1):
+			pwm1.ChangeDutyCycle(i)
+			time.sleep(pause_time)
 
 try:
 	while(1):
@@ -54,6 +54,6 @@ try:
 		time.sleep(0.1)
 
 except KeyboardInterrupt:
-	pwm1.stop()    
+	pwm1.stop()
 	GPIO.cleanup() ## Hago una limpieza de los GPIO
 	print "Script detenido."
